@@ -199,6 +199,16 @@ function createFood() {
     axios
         .post('http://localhost:3000/food', body)
         .then((res) => { 
+
+            const foodList = document.querySelector('section')
+            foodList.innerHTML = '';
+
+            res.data.forEach(foodStr => {
+                const newP = document.createElement('p')
+                newP.textContent = foodStr
+
+                foodList.appendChild(newP)
+            })
             console.log(res.data)
         })
         .catch(err => console.log(err))
